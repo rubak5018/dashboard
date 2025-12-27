@@ -19,12 +19,12 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        <div className="min-h-screen items-center justify-center font-sans bg-gradient-to-br from-zinc-950 via-neutral-900 to-zinc-950">
+        <div className="min-h-screen items-center justify-center font-sans bg-linear-to-br from-zinc-950 via-neutral-900 to-zinc-950">
           <Header showStats={true} isLoading={false} />
           <main className="container mx-auto">
             {children}
           </main>
-          <Footer isLoading={true} />
+          <Footer />
         </div>
       </body>
     </html>

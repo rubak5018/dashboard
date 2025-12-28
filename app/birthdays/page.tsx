@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import BirthdaysClient from './BirthdaysClient';
+import BirthdaysClient, { BirthdayPerson } from './BirthdaysClient';
 import BirthdaysSkeleton from './BirthdaysSkeleton';
 
 export const metadata = {
@@ -7,15 +7,17 @@ export const metadata = {
   description: 'Календар днів народження',
 };
 
-async function fetchBirthdays() {
+async function fetchBirthdays(): Promise<BirthdayPerson[]> {
   try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL, // GAS URL
-      { cache: 'no-store' }
-    );
+    // Використовуємо internal API route
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/birthdays`, {
+      next: { revalidate: 300 }
+    });
 
     if (!response.ok) {
-      throw new Error(`Fetch error: ${response.status}`);
+      console.error(`Fetch error: ${response.status}`);
+      return [];
     }
 
     const data = await response.json();

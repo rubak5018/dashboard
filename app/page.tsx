@@ -96,7 +96,7 @@ export default function RubakDashboard() {
       <section className="relative z-10 container mx-auto px-6 py-16">
         {/* Hero Section */}
         <div className={`text-center mb-20 transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-6xl md:text-8xl font-black mb-6 bg-linear-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-6xl lg:text-8xl font-black mb-6 bg-linear-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text text-transparent">
             ОПЕРАЦІЙНИЙ ЦЕНТР
           </h2>
           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">

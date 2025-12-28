@@ -99,8 +99,8 @@ export default function RubakDashboard() {
           <h2 className="text-3xl md:text-6xl lg:text-8xl font-black mb-6 bg-linear-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text text-transparent">
             ОПЕРАЦІЙНИЙ ЦЕНТР
           </h2>
-          <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-            Зведена оперативна інформація підрозділу в режимі реального часу
+          <p className="text-zinc-400 md:text-lg max-w-2xl mx-auto">
+            Зведена оперативна інформація в режимі реального часу
           </p>
         </div>
 

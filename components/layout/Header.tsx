@@ -38,12 +38,8 @@ const navMenu: MenuItem[] = [
       },
       {
         title: "+ Новий звіт розвідки",
-        href: "/reports/reconnaissance"
+        href: "/reports/wings"
       },
-      {
-        title: "Всі звіти",
-        href: "/reports"
-      }
     ]
   },
   {

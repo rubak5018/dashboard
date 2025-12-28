@@ -5,7 +5,7 @@ import type { BirthdayPerson } from './BirthdaysClient';
 
 export const metadata = {
   title: 'Дні народження | RUBAK',
-  description: 'Календар днів народження бійців підрозділу RUBAK',
+  description: 'Календар днів народження',
 };
 
 export const revalidate = 300; // Revalidate кожні 5 хвилин
@@ -73,7 +73,7 @@ export default function BirthdaysPage() {
             Дні народження
           </h1>
           <p className="text-muted-foreground">
-            Календар днів народження бійців підрозділу RUBAK
+            Календар
           </p>
         </div>
 

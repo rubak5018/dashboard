@@ -42,11 +42,11 @@ function isThisMonth(birthDate: string) {
   return today.getMonth() === date.getMonth();
 }
 
-function getCurrentMonthName() {
-  return new Intl.DateTimeFormat("uk-UA", {
-    month: "long"
-  }).format(new Date());
-}
+// function getCurrentMonthName() {
+//   return new Intl.DateTimeFormat("uk-UA", {
+//     month: "long"
+//   }).format(new Date());
+// }
 
 function formatBirthDate(birthDate: string) {
   const date = parseISODate(birthDate);
@@ -275,7 +275,7 @@ export default function BirthdaysClient({
                 <div className="flex items-center gap-2">
                   <PartyPopper className="w-5 h-5 text-primary" />
                   <h2 className="text-2xl font-bold">
-                    Іменинники {getCurrentMonthName()}
+                    Іменинники місяця
                   </h2>
                 </div>
 

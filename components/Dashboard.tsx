@@ -468,11 +468,15 @@ export default function Dashboard() {
                         <p className="font-medium mb-2">{drone.droneType}</p>
                         <div className="flex items-center gap-4 text-sm">
                           <span className="text-primary font-semibold">
-                            Всього: {drone.total}
+                            Вильотів: {drone.total}
                           </span>
-                          {drone.losses > 0 && (
+                          {drone.losses > 0 ? (
                             <span className="text-destructive font-semibold">
                               Втрачено: {drone.losses}
+                            </span>
+                          ): (
+                            <span className="text-green-600 font-semibold">
+                              Використано: {drone.total - drone.losses}
                             </span>
                           )}
                         </div>

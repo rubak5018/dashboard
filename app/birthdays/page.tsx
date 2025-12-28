@@ -1,17 +1,26 @@
 import { Suspense } from 'react';
-import BirthdaysClient, { BirthdayPerson } from './BirthdaysClient';
+import BirthdaysClient from './BirthdaysClient';
 import BirthdaysSkeleton from './BirthdaysSkeleton';
+import type { BirthdayPerson } from './BirthdaysClient';
 
 export const metadata = {
   title: 'Дні народження | RUBAK',
-  description: 'Календар днів народження',
+  description: 'Календар днів народження бійців підрозділу RUBAK',
 };
+
+export const revalidate = 300; // Revalidate кожні 5 хвилин
 
 async function fetchBirthdays(): Promise<BirthdayPerson[]> {
   try {
-    // Використовуємо internal API route
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/birthdays`, {
+    const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL;
+    
+    if (!SCRIPT_URL) {
+      console.error('Google Script Birthdays URL not configured');
+      return [];
+    }
+
+    const response = await fetch(SCRIPT_URL, {
+      cache: 'no-store',
       next: { revalidate: 300 }
     });
 
@@ -21,7 +30,13 @@ async function fetchBirthdays(): Promise<BirthdayPerson[]> {
     }
 
     const data = await response.json();
-    return Array.isArray(data) ? data : [];
+    
+    if (!Array.isArray(data)) {
+      console.error('Invalid data format');
+      return [];
+    }
+
+    return data;
 
   } catch (error) {
     console.error('fetchBirthdays error:', error);
@@ -29,23 +44,41 @@ async function fetchBirthdays(): Promise<BirthdayPerson[]> {
   }
 }
 
-export default async function BirthdaysPage() {
+async function BirthdaysContent() {
   const birthdays = await fetchBirthdays();
+  
+  if (birthdays.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+          <span className="text-2xl">📅</span>
+        </div>
+        <h3 className="text-xl font-semibold mb-2">Немає даних</h3>
+        <p className="text-muted-foreground">
+          Не вдалося завантажити дні народження. Спробуйте пізніше.
+        </p>
+      </div>
+    );
+  }
 
+  return <BirthdaysClient data={birthdays} />;
+}
+
+export default function BirthdaysPage() {
   return (
-    <div className="min-h-screen bg-neutral-100">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 md:px-6 py-8">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
             Дні народження
           </h1>
           <p className="text-muted-foreground">
-            Календар днів народження
+            Календар днів народження бійців підрозділу RUBAK
           </p>
         </div>
 
         <Suspense fallback={<BirthdaysSkeleton />}>
-          <BirthdaysClient data={birthdays} />
+          <BirthdaysContent />
         </Suspense>
       </div>
     </div>

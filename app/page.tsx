@@ -192,18 +192,18 @@ export default function RubakDashboard() {
         {/* Stats summary for today */}
         {stats && stats.totalFlights > 0 && (
           <div className={`mt-12 text-center transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center gap-6 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl px-8 py-4">
-              <div className="text-left">
+            <div className="flex md:inline-flex flex-col md:flex-row items-center justify-center gap-6 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl px-8 py-4">
+              <div className="text-center md:text-left">
                 <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">За сьогодні</p>
                 <p className="text-2xl font-black text-amber-500">{stats.totalFlights} операцій</p>
               </div>
-              <div className="w-px h-12 bg-zinc-800" />
-              <div className="text-left">
+              <div className="w-1/2 h-px md:w-px md:h-12 bg-zinc-800" />
+              <div className="text-center md:text-left">
                 <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Ефективність</p>
                 <p className="text-2xl font-black text-green-500">{stats.successRate}%</p>
               </div>
-              <div className="w-px h-12 bg-zinc-800" />
-              <div className="text-left">
+              <div className="w-1/2 h-px md:w-px md:h-12 bg-zinc-800" />
+              <div className="text-center md:text-left">
                 <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Статус</p>
                 <p className="text-sm font-bold text-green-500 flex items-center gap-2">
                   <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse" ></span>

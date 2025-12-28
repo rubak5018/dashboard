@@ -34,11 +34,11 @@ const navMenu: MenuItem[] = [
     submenu: [
       {
         title: "+ Новий звіт FPV",
-        href: "/reports/fpv"
+        href: "/reports/new"
       },
       {
         title: "+ Новий звіт розвідки",
-        href: "/reports/wings"
+        href: "/reports/new"
       },
     ]
   },

@@ -65,7 +65,7 @@ export default function Header({ showStats = true, isLoading = false }: HeaderPr
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-neutral-800 bg-zinc-950/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60 transition-all duration-1000",
+      "sticky top-0 z-50 w-full border-b border-neutral-800 bg-zinc-950/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/70 transition-all duration-1000",
       isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
     )}>
       <div className="container mx-auto px-4 md:px-6">

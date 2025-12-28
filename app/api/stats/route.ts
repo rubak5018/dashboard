@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyWMbT8PbgMn9KeHUsZGDq7u_Uaq1HcfVDEzedPIIeS0pB5XOPKKXtQ-eCnMCm4HFiQw/exec';
+const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_STATS_URL;
+
+if (!SCRIPT_URL) {
+  throw new Error('Google Script URL not configured');
+}
 
 export const revalidate = 30; // Кеш на 30 секунд
 

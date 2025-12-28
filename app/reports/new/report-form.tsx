@@ -396,38 +396,37 @@ export default function DroneReportForm() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="w-full flex items-center justify-center min-h-screen bg-neutral-50">
       {/* Toast повідомлення */}
       <Toast toast={toast} onClose={() => setToast(prev => ({ ...prev, show: false }))} />
 
-      <div className="max-w-xl mx-auto">
-        <Card className="shadow-none border-none">
-          <CardHeader className="rounded-t-lg">
+      <div className="container max-w-xl mx-auto px-4">
+        <Card className="w-full px-0 shadow-none border-none bg-transparent">
+          <CardHeader className="rounded-t-lg px-0">
             <CardTitle className="flex items-center gap-2 text-2xl md:text-3xl font-bold">
               Звіт про виліт FPV-дрону
             </CardTitle>
             <CardDescription>
-              Заповніть всі обов`&apos;`язкові поля
+              Заповніть всі обов&apos;язкові поля
             </CardDescription>
           </CardHeader>
 
-          <CardContent className="p-4 md:p-6">
+          <CardContent className="px-0">
             <div className="flex flex-col gap-6">
               {/* Форма */}
               <div className="flex-1 space-y-6">
                 {/* Загальна інформація */}
-                <Card className="bg-slate-50">
-                  <CardHeader className="pb-3">
+                <Card className='gap-3'>
+                  <CardHeader className="pb-0">
                     <CardTitle className="text-base md:text-lg">Загальна інформація</CardTitle>
                     {/* Інструкція */}
-                    <Alert className="mt-1 text-xs">
-                      <AlertDescription>
-                        <strong>📝 Примітка:</strong> Час скиду вводиться без дати - поточна дата додається автоматично при відправці.
+                    <Alert className="mt-1">
+                      <AlertDescription className="text-xs">
+                        <strong>📝 Примітка:</strong> Тільки час. Дата додається автоматично
                       </AlertDescription>
                     </Alert>
                   </CardHeader>
                   <CardContent className="grid grid-flow-row gap-3 md:gap-4">
-
                     <FormField label="Час скиду/ураження" error={touched.strikeTime ? errors.strikeTime : undefined}>
                       <Input
                         type="time"
@@ -492,15 +491,15 @@ export default function DroneReportForm() {
                       </FormField>
 
                       {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC'))) &&
-                       <FormField label="Заводський номер" error={touched.serialNumber ? errors.serialNumber : undefined}>
-                        <Input
-                          type="text"
-                          value={formData.serialNumber}
-                          onChange={(e) => handleChange('serialNumber', e.target.value)}
-                          onBlur={() => handleBlur('serialNumber')}
-                          placeholder="Без номеру"
-                        />
-                      </FormField>}
+                        <FormField label="Заводський номер" error={touched.serialNumber ? errors.serialNumber : undefined}>
+                          <Input
+                            type="text"
+                            value={formData.serialNumber}
+                            onChange={(e) => handleChange('serialNumber', e.target.value)}
+                            onBlur={() => handleBlur('serialNumber')}
+                            placeholder="Без номеру"
+                          />
+                        </FormField>}
                     </div>
 
                     <FormField label="Стрім" error={touched.stream ? errors.stream : undefined}>
@@ -519,12 +518,12 @@ export default function DroneReportForm() {
                 </Card>
 
                 {/* Контрольні точки */}
-                <Card className="bg-slate-50">
+                <Card className='gap-3'>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base md:text-lg">Контрольні точки</CardTitle>
                     {/* Інструкція */}
-                    <Alert className="mt-1 text-xs">
-                      <AlertDescription>
+                    <Alert className="mt-1">
+                      <AlertDescription className="text-xs">
                         <strong>📝 Примітка:</strong> Координати у форматі MGRS, наприклад: 37U CP 12345 67890
                       </AlertDescription>
                     </Alert>
@@ -579,8 +578,8 @@ export default function DroneReportForm() {
                 </Card>
 
                 {/* Результат */}
-                <Card className="bg-slate-50">
-                  <CardHeader className="pb-3">
+                <Card className='gap-3'>
+                  <CardHeader className="pb-0">
                     <CardTitle className="text-base md:text-lg">Результат вильоту</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -640,7 +639,7 @@ export default function DroneReportForm() {
                 </Card>
 
                 {/* Деталі БК */}
-                <Card className="bg-slate-50">
+                <Card className='gap-3'>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base md:text-lg">Деталі БК</CardTitle>
                   </CardHeader>
@@ -749,7 +748,7 @@ export default function DroneReportForm() {
                     <div className="border-t pt-3">
                       <p className="font-semibold text-slate-600 mb-1">Результат</p>
                       <div className="space-y-0.5 text-slate-700">
-                        <p>{formData.generalResult === 'hit' ? 'Ураження' : formData.generalResult === 'loss' ? 'Ціль не уражено. Втрата борта, через '+formData.lossReason: '—'}</p>
+                        <p>{formData.generalResult === 'hit' ? 'Ураження' : formData.generalResult === 'loss' ? 'Ціль не уражено. Втрата борта, через ' + formData.lossReason : '—'}</p>
                         {formData.generalResult === 'hit' && (
                           <>
                             <p><strong>Опис:</strong> {formData.shortDescription || '—'}</p>

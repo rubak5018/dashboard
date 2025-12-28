@@ -1,19 +1,20 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
-  TrendingUp, 
-  Target, 
-  Users, 
-  AlertTriangle, 
-  MapPin, 
-  Package, 
+import {
+  TrendingUp,
+  Target,
+  Users,
+  AlertTriangle,
+  MapPin,
+  Package,
   Plane,
   Loader2,
-  Activity
+  Activity,
 } from 'lucide-react';
+import Link from 'next/link';
 
 interface DashboardStats {
   totalFlights: number;
@@ -84,14 +85,14 @@ export default function Dashboard() {
     if (isManualRefresh) {
       setIsRefreshing(true);
     }
-    
+
     try {
       const response = await fetch('/api/stats', {
         cache: 'no-store'
       });
-      
+
       if (!response.ok) throw new Error('Failed to fetch');
-      
+
       const data = await response.json();
       setStats(data);
       setError(null);
@@ -107,16 +108,16 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchStats();
-    
+
     // Оновлення кожні 30 секунд
     const interval = setInterval(() => fetchStats(), 30000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-background via-background to-muted/20">
+      <div className="flex items-center justify-center min-h-screen bg-neutral-50">
         <div className="text-center space-y-4">
           <div className="relative">
             <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto"></div>
@@ -130,7 +131,7 @@ export default function Dashboard() {
 
   if (error || !stats) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-background via-background to-muted/20">
+      <div className="flex items-center justify-center min-h-screen bg-neutral-50">
         <Card className="max-w-md border-destructive/50 bg-destructive/5">
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
@@ -152,7 +153,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-neutral-50">
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
@@ -173,7 +174,7 @@ export default function Dashboard() {
               <span>Оновлено: {lastUpdate.toLocaleTimeString('uk-UA')}</span>
             </div>
           </div>
-          <Button 
+          <Button
             onClick={() => fetchStats(true)}
             disabled={isRefreshing}
             size="default"
@@ -206,6 +207,14 @@ export default function Dashboard() {
                   <p className="text-muted-foreground max-w-md">
                     Сьогодні ще не було жодного вильоту. Статистика з`&apos;`явиться після першого запису.
                   </p>
+                  <Button asChild
+                    size="default"
+                    className="w-full md:w-auto"
+                  >
+                    <Link href="/reports/new">
+                      + Додати звіт
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -509,11 +518,10 @@ export default function Dashboard() {
                       )}
                     </div>
                     <div className="text-right space-y-1">
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${
-                        flight.isDroneLoss === 'Ні' 
-                          ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${flight.isDroneLoss === 'Ні'
+                          ? 'bg-green-500/10 text-green-600 dark:text-green-400'
                           : 'bg-destructive/10 text-destructive'
-                      }`}>
+                        }`}>
                         {flight.result}
                       </span>
                       {flight.target !== '-' && flight.target !== 'Ціль не уражено' && (

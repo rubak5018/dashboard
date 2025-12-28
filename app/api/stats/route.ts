@@ -1,11 +1,5 @@
 import { NextResponse } from 'next/server';
 
-const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_STATS_URL;
-
-if (!SCRIPT_URL) {
-  throw new Error('Google Script URL not configured');
-}
-
 export const revalidate = 30; // Кеш на 30 секунд
 
 interface DashboardStats {
@@ -38,6 +32,16 @@ interface DashboardStats {
 
 export async function GET() {
   try {
+    const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_STATS_URL;
+
+    if (!SCRIPT_URL) {
+      console.error('Google Script URL not configured');
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     const response = await fetch(SCRIPT_URL, {
       method: 'GET',
       headers: {

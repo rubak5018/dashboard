@@ -10,13 +10,13 @@ interface BirthdayPerson {
 
 export async function GET() {
   try {
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL;
+    const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL;
 
-    if (!scriptUrl) {
+    if (!SCRIPT_URL) {
       throw new Error('Google Script URL not configured');
     }
 
-    const response = await fetch(scriptUrl, {
+    const response = await fetch(SCRIPT_URL, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

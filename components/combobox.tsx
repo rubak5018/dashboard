@@ -1,44 +1,83 @@
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import * as React from "react"
+import { Check, ChevronsUpDown } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/ui/command";
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-type Option = {
-  label: string;
-  value: string;
-};
-
-interface ComboboxProps {
-  value?: string;
-  onChange: (value: string) => void;
-  options: Option[];
-  placeholder?: string;
+interface ComboboxOption {
+  value: string
+  label: string
 }
 
-export function Combobox({
-  value,
-  onChange,
-  options,
-  placeholder = "Оберіть або введіть",
-}: ComboboxProps) {
-  const [open, setOpen] = React.useState(false);
+interface ComboboxFieldProps {
+  options: string | ComboboxOption[]
+  value: string
+  onValueChange: (value: string) => void
+  placeholder?: string
+  searchPlaceholder?: string
+  emptyText?: string
+  allowCustom?: boolean
+  disabled?: boolean
+}
 
-  const filtered = options.filter((o) =>
-    o.label.toLowerCase().includes((value ?? "").toLowerCase())
-  );
+export function ComboboxField({
+  options,
+  value,
+  onValueChange,
+  placeholder = "Оберіть...",
+  searchPlaceholder = "Пошук...",
+  emptyText = "Не знайдено",
+  allowCustom = true,
+  disabled = false,
+}: ComboboxFieldProps) {
+  const [open, setOpen] = React.useState(false)
+  const [searchValue, setSearchValue] = React.useState("")
+
+  // Знаходимо label для вибраного значення
+  const selectedOption = options.find((option) => option.value === value)
+  const displayValue = selectedOption?.label || value
+
+  // Фільтруємо опції
+  const filteredOptions = React.useMemo(() => {
+    if (!searchValue) return options
+    
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(searchValue.toLowerCase())
+    )
+  }, [options, searchValue])
+
+  // Перевірка чи є точний збіг
+  const exactMatch = filteredOptions.some(
+    (option) => option.label.toLowerCase() === searchValue.toLowerCase()
+  )
+
+  const handleSelect = (currentValue: string) => {
+    onValueChange(currentValue === value ? "" : currentValue)
+    setOpen(false)
+    setSearchValue("")
+  }
+
+  const handleCustomValue = () => {
+    if (searchValue.trim()) {
+      onValueChange(searchValue.trim())
+      setOpen(false)
+      setSearchValue("")
+    }
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -46,45 +85,71 @@ export function Combobox({
         <Button
           variant="outline"
           role="combobox"
-          className="w-full justify-between"
+          aria-expanded={open}
+          disabled={disabled}
+          className="w-full justify-between bg-background hover:bg-muted"
         >
-          {value || placeholder}
-          <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
+          <span className={cn("truncate", !value && "text-muted-foreground")}>
+            {value ? displayValue : placeholder}
+          </span>
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-
-      <PopoverContent className="w-full p-0">
-        <Command>
+      <PopoverContent className="w-full p-0" align="start">
+        <Command shouldFilter={false}>
           <CommandInput
-            placeholder="Введіть значення..."
-            value={value}
-            onValueChange={onChange}
+            placeholder={searchPlaceholder}
+            value={searchValue}
+            onValueChange={setSearchValue}
           />
-          <CommandEmpty>
-            Натисніть Enter, щоб використати власне значення
-          </CommandEmpty>
-
-          <CommandGroup>
-            {filtered.map((option) => (
-              <CommandItem
-                key={option.value}
-                onSelect={() => {
-                  onChange(option.value);
-                  setOpen(false);
-                }}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === option.value ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                {option.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
+          <CommandList>
+            <CommandEmpty>
+              <div className="py-6 text-center text-sm">
+                {emptyText}
+                {allowCustom && searchValue && !exactMatch && (
+                  <div className="mt-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleCustomValue}
+                      className="text-primary hover:text-primary"
+                    >
+                      + Додати "{searchValue}"
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </CommandEmpty>
+            <CommandGroup>
+              {filteredOptions.map((option) => (
+                <CommandItem
+                  key={option.value}
+                  value={option.value}
+                  onSelect={handleSelect}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === option.value ? "opacity-100" : "opacity-0"
+                    )}
+                  />
+                  {option.label}
+                </CommandItem>
+              ))}
+              {/* Опція для додавання власного значення */}
+              {allowCustom && searchValue && !exactMatch && filteredOptions.length > 0 && (
+                <CommandItem
+                  value={searchValue}
+                  onSelect={() => handleCustomValue()}
+                  className="border-t"
+                >
+                  <span className="text-primary">+ Додати "{searchValue}"</span>
+                </CommandItem>
+              )}
+            </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>
-  );
+  )
 }

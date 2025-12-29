@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ComboboxField } from '@/components/combobox';
 
 // Типи
 interface FormData {
@@ -50,94 +51,88 @@ interface ToastData {
   show: boolean;
 }
 
-const MISSION_TYPES: string[] = [
-  "Виліт з метою ураження укриття противника",
-  "Виліт з метою ураження о/с противника",
-  "Виліт з метою ураження артилерії противника",
-  "Виліт з метою ураження військової техніки противника",
-  "Виліт з метою ураження засобів та обладнання противника"
+const MISSION_TYPES = [
+  { value: "Виліт з метою ураження укриття противника", label: "Виліт з метою ураження укриття противника" },
+  { value: "Виліт з метою ураження о/с противника", label: "Виліт з метою ураження о/с противника" },
+  { value: "Виліт з метою ураження артилерії противника", label: "Виліт з метою ураження артилерії противника" },
+  { value: "Виліт з метою ураження військової техніки противника", label: "Виліт з метою ураження військової техніки противника" },
+  { value: "Виліт з метою ураження засобів та обладнання противника", label: "Виліт з метою ураження засобів та обладнання противника" },
 ];
 
-const CREWS: string[] = [
-  "СОЙКА",
-  "БІДОЛАГИ",
-  "МОЛОХ",
-  "РОДИЧІ"
+const CREWS = [
+  { value: "СОЙКА", label: "СОЙКА" },
+  { value: "БІДОЛАГИ", label: "БІДОЛАГИ" },
+  { value: "МОЛОХ", label: "МОЛОХ" },
+  { value: "РОДИЧІ", label: "РОДИЧІ" }
 ];
 
-const PILOTS: string[] = [
-  "HUNTER",
-  "MARSHALL",
-  "TOURIST",
-  "PUNCH",
-  "СЬОГУН",
-  "SAMURAI",
-  "KIRA",
-  "KOMA"
+const PILOTS = [
+  { value: "HUNTER", label: "HUNTER" },
+  { value: "MARSHALL", label: "MARSHALL" },
+  { value: "TOURIST", label: "TOURIST" },
+  { value: "PUNCH", label: "PUNCH" },
+  { value: "СЬОГУН", label: "СЬОГУН" },
+  { value: "SAMURAI", label: "SAMURAI" },
+  { value: "KIRA", label: "KIRA" },
+  { value: "KOMA", label: "KOMA" }
 ];
 
-const DRONE_TYPES: string[] = [
-  "Безпілотний літальний апарат \"VYRIY PRO\"",
-  "БПЛА VIRIY JOHNNY PRO 10TK",
-  "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)",
-  "BabaBoom 10 radio",
-  'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ',
-  'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ',
-  "БПЛА BLINK 8",
-  "Безпілотний літальний апарат \"DARTS\"",
-  "Баражуючий дрон \"Батон\""
+const DRONE_TYPES = [
+  { value: "Безпілотний літальний апарат \"VYRIY PRO\"", label: "Безпілотний літальний апарат \"VYRIY PRO\"" },
+  { value: "БПЛА VIRIY JOHNNY PRO 10TK", label: "БПЛА VIRIY JOHNNY PRO 10TK" },
+  { value: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)", label: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)" },
+  { value: "BabaBoom 10 radio", label: "BabaBoom 10 radio" },
+  { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ' },
+  { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ' },
+  { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
+  { value: "Безпілотний літальний апарат \"DARTS\"", label: "Безпілотний літальний апарат \"DARTS\"" },
+  { value: "Баражуючий дрон \"Батон\"", label: "Баражуючий дрон \"Батон\"" }
 ];
 
-const STREAMS: string[] = [
-  "6.3 ALFA",
-  "6.3 BRAVO",
-  "6.3 DELTA",
-  "6.3 РОНІН",
-  "Власний (запис екрану)",
-  "ПОКИДЬКИ",
-  "WOLF'S"
+const STREAMS = [
+  { value: "6.3 ALFA", label: "6.3 ALFA" },
+  { value: "6.3 BRAVO", label: "6.3 BRAVO" },
+  { value: "6.3 DELTA", label: "6.3 DELTA" },
+  { value: "6.3 РОНІН", label: "6.3 РОНІН" },
+  { value: "Власний (запис екрану)", label: "Власний (запис екрану)" },
+  { value: "ПОКИДЬКИ", label: "ПОКИДЬКИ" },
+  { value: "WOLF'S", label: "WOLF'S" }
 ];
 
-const SETTLEMENTS: string[] = [
-  "Сергіївка",
-  "Удачне",
-  "Новотроїцьке",
-  "Жовте",
-  "Котлине",
-  "Покровськ",
-  "Мирноград",
-  "Шевченко",
+const SETTLEMENTS = [
+  { value: "Сергіївка", label: "Сергіївка" },
+  { value: "Удачне", label: "Удачне" },
+  { value: "Новотроїцьке", label: "Новотроїцьке" },
+  { value: "Жовте", label: "Жовте" },
+  { value: "Котлине", label: "Котлине" },
+  { value: "Покровськ", label: "Покровськ" },
+  { value: "Мирноград", label: "Мирноград" },
+  { value: "Шевченко", label: "Шевченко" }
 ];
 
-const TARGET_TYPES: string[] = [
-  "Особовий склад",
-  "Автомобіль",
-  "Позиція артилерії",
-  "Укриття",
-  "БТР",
-  "БМП",
-  "Танк",
-  "Укріплення",
-  "Склад БК",
-  "Командний пункт",
-  "РСЗВ",
-  "ППО",
-  "РЛС"
+const TARGET_TYPES = [
+  { value: "Особовий склад", label: "Особовий склад" },
+  { value: "Автомобіль", label: "Автомобіль" },
+  { value: "Позиція артилерії", label: "Позиція артилерії" },
+  { value: "Укриття", label: "Укриття" },
+  { value: "БТР", label: "БТР" },
+  { value: "БМП", label: "БМП" },
+  { value: "Танк", label: "Танк" }
 ];
 
-const AMMOS_LIST: string[] = [
-  "HFB1200F",
-  "HFB0500C",
-  "HFB0600F",
-  "HFB1055F",
-  "Фугас 600",
-  "Фугас 800",
-  "Фугас 1100",
-  "Термобар-0.8",
-  "МОА Композит",
-  "КУ-0.8",
-  "ОФ-0.8",
-  "Сфера 1.1"
+const AMMOS_LIST = [
+  { value: "HFB1200F", label: "HFB1200F" },
+  { value: "HFB0500C", label: "HFB0500C" },
+  { value: "HFB0600F", label: "HFB0600F" },
+  { value: "Фугас 600", label: "Фугас 600" },
+  { value: "Фугас 800", label: "Фугас 800" },
+  { value: "Термобар-0.8", label: "Термобар-0.8" }
+];
+
+const INITIATION_TYPES = [
+  { value: "Плата ініціації", label: "Плата ініціації" },
+  { value: "Накольний механізм", label: "Накольний механізм" },
+  { value: "Затримка підриву", label: "Затримка підриву" }
 ];
 
 // Компонент Toast для повідомлень
@@ -438,56 +433,49 @@ export default function DroneReportForm() {
                     </FormField>
 
                     <FormField label="Тип вильоту" error={touched.flightType ? errors.flightType : undefined}>
-                      <Select value={formData.flightType} onValueChange={(val) => handleChange('flightType', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть тип" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {MISSION_TYPES.map(mission => (
-                            <SelectItem key={mission} value={mission}>{mission}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={MISSION_TYPES}
+                        value={formData.flightType}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, flightType: value }))}
+                        placeholder="Оберіть або введіть тип вильоту"
+                        searchPlaceholder="Пошук типу вильоту..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Екіпаж" error={touched.crew ? errors.crew : undefined}>
-                      <Select value={formData.crew} onValueChange={(val) => handleChange('crew', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть екіпаж" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {CREWS.map(crew => (
-                            <SelectItem key={crew} value={crew}>{crew}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={CREWS}
+                        value={formData.crew}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, crew: value }))}
+                        placeholder="Оберіть або введіть екіпаж"
+                        searchPlaceholder="Пошук екіпажу..."
+                        emptyText="Екіпаж не знайдено"
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Пілот" error={touched.pilot ? errors.pilot : undefined}>
-                      <Select value={formData.pilot} onValueChange={(val) => handleChange('pilot', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть пілота" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {PILOTS.map(pilot => (
-                            <SelectItem key={pilot} value={pilot}>{pilot}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={PILOTS}
+                        value={formData.pilot}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, pilot: value }))}
+                        placeholder="Оберіть або введіть пілота"
+                        searchPlaceholder="Пошук пілота..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <div className="flex items-start flex-wrap gap-3">
                       <FormField label="Тип БпЛА" error={touched.droneType ? errors.droneType : undefined}>
-                        <Select value={formData.droneType} onValueChange={(val) => handleChange('droneType', val)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Оберіть тип" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {DRONE_TYPES.map(drone => (
-                              <SelectItem key={drone} value={drone}>{drone}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <ComboboxField
+                          options={DRONE_TYPES}
+                          value={formData.droneType}
+                          onValueChange={(value) => setFormData(prev => ({ ...prev, droneType: value }))}
+                          placeholder="Оберіть або введіть тип дрону"
+                          searchPlaceholder="Пошук типу дрону..."
+                          allowCustom={true}
+                        />
                       </FormField>
 
                       {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC'))) &&
@@ -503,16 +491,14 @@ export default function DroneReportForm() {
                     </div>
 
                     <FormField label="Стрім" error={touched.stream ? errors.stream : undefined}>
-                      <Select value={formData.stream} onValueChange={(val) => handleChange('stream', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть стрім" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {STREAMS.map(stream => (
-                            <SelectItem key={stream} value={stream}>{stream}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={STREAMS}
+                        value={formData.stream}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, stream: value }))}
+                        placeholder="Оберіть або введіть стрім"
+                        searchPlaceholder="Пошук стріму..."
+                        allowCustom={true}
+                      />
                     </FormField>
                   </CardContent>
                 </Card>
@@ -530,16 +516,14 @@ export default function DroneReportForm() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <FormField label="Населений пункт цілі" error={touched.targetSettlement ? errors.targetSettlement : undefined}>
-                      <Select value={formData.targetSettlement} onValueChange={(val) => handleChange('targetSettlement', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Куди вилітали" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {SETTLEMENTS.map(settlement => (
-                            <SelectItem key={settlement} value={settlement}>{settlement}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={SETTLEMENTS}
+                        value={formData.targetSettlement}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, targetSettlement: value }))}
+                        placeholder="Оберіть або введіть НП"
+                        searchPlaceholder="Пошук населеного пункту..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Координати цілі (MGRS)" error={touched.targetCoordinates ? errors.targetCoordinates : undefined}>
@@ -553,16 +537,14 @@ export default function DroneReportForm() {
                     </FormField>
 
                     <FormField label="Населений пункт події" error={touched.eventSettlement ? errors.eventSettlement : undefined}>
-                      <Select value={formData.eventSettlement} onValueChange={(val) => handleChange('eventSettlement', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Де відбулась подія" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {SETTLEMENTS.map(settlement => (
-                            <SelectItem key={settlement} value={settlement}>{settlement}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={SETTLEMENTS}
+                        value={formData.eventSettlement}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, eventSettlement: value }))}
+                        placeholder="Оберіть або введіть НП"
+                        searchPlaceholder="Пошук населеного пункту..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Координати події (MGRS)" error={touched.eventCoordinates ? errors.eventCoordinates : undefined}>
@@ -608,16 +590,14 @@ export default function DroneReportForm() {
                         </FormField>
 
                         <FormField label="Що саме уражено" error={touched.targetDestroyed ? errors.targetDestroyed : undefined}>
-                          <Select value={formData.targetDestroyed} onValueChange={(val) => handleChange('targetDestroyed', val)}>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Оберіть тип цілі" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {TARGET_TYPES.map(target => (
-                                <SelectItem key={target} value={target}>{target}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <ComboboxField
+                            options={TARGET_TYPES}
+                            value={formData.targetDestroyed}
+                            onValueChange={(value) => setFormData(prev => ({ ...prev, targetDestroyed: value }))}
+                            placeholder="Оберіть тип цілі"
+                            searchPlaceholder="Пошук типу цілі..."
+                            allowCustom={true}
+                          />
                         </FormField>
                       </>
                     )}
@@ -645,29 +625,25 @@ export default function DroneReportForm() {
                   </CardHeader>
                   <CardContent className="flex flex-col gap-3">
                     <FormField label="Тип БК" error={touched.ammoType ? errors.ammoType : undefined}>
-                      <Select value={formData.ammoType} onValueChange={(val) => handleChange('ammoType', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть тип" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {AMMOS_LIST.map(ammo => (
-                            <SelectItem key={ammo} value={ammo}>{ammo}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={AMMOS_LIST}
+                        value={formData.ammoType}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, ammoType: value }))}
+                        placeholder="Оберіть або введіть тип БК"
+                        searchPlaceholder="Пошук БК..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Тип ініціації" error={touched.initiationType ? errors.initiationType : undefined}>
-                      <Select value={formData.initiationType} onValueChange={(val) => handleChange('initiationType', val)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Оберіть тип" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Плата ініціації">Плата ініціації</SelectItem>
-                          <SelectItem value="Накольний механізм">Накольний механізм</SelectItem>
-                          <SelectItem value="Затримка підриву">Затримка підриву</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <ComboboxField
+                        options={INITIATION_TYPES}
+                        value={formData.initiationType}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, initiationType: value }))}
+                        placeholder="Оберіть або введіть тип ініціації"
+                        searchPlaceholder="Пошук типу ініціації..."
+                        allowCustom={true}
+                      />
                     </FormField>
 
                     <FormField label="Кількість БК" error={touched.ammoCount ? errors.ammoCount : undefined}>

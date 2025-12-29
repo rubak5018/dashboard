@@ -87,11 +87,22 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await fetch('/api/stats', {
-        cache: 'no-store'
+      const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_STATS_URL;
+      
+      if (!SCRIPT_URL) {
+        console.error('Google Script Stats URL not configured');
+        return [];
+      }
+  
+      const response = await fetch(SCRIPT_URL, {
+        cache: 'no-store',
+        next: { revalidate: 300 }
       });
-
-      if (!response.ok) throw new Error('Failed to fetch');
+  
+      if (!response.ok) {
+        console.error(`Fetch error: ${response.status}`);
+        return [];
+      }
 
       const data = await response.json();
       setStats(data);
@@ -110,7 +121,7 @@ export default function Dashboard() {
     fetchStats();
 
     // Оновлення кожні 30 секунд
-    const interval = setInterval(() => fetchStats(), 30000);
+    const interval = setInterval(() => fetchStats(), 300);
 
     return () => clearInterval(interval);
   }, []);

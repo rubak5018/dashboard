@@ -22,7 +22,7 @@ export default function RubakDashboard() {
     fetchStats();
 
     // Оновлення кожні 30 секунд
-    const interval = setInterval(fetchStats, 30000);
+    const interval = setInterval(fetchStats, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -37,7 +37,7 @@ export default function RubakDashboard() {
   
       const response = await fetch(SCRIPT_URL, {
         cache: 'no-store',
-        next: { revalidate: 300 }
+        next: { revalidate: 3000 }
       });
   
       if (!response.ok) {

@@ -121,7 +121,7 @@ export default function Dashboard() {
     fetchStats();
 
     // Оновлення кожні 30 секунд
-    const interval = setInterval(() => fetchStats(), 300);
+    const interval = setInterval(() => fetchStats(), 10000);
 
     return () => clearInterval(interval);
   }, []);

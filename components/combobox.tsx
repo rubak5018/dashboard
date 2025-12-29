@@ -24,7 +24,7 @@ interface ComboboxOption {
 }
 
 interface ComboboxFieldProps {
-  options: string | ComboboxOption[]
+  options: ComboboxOption[]
   value: string
   onValueChange: (value: string) => void
   placeholder?: string

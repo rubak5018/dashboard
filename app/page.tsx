@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import { AlertCircle, Target, TrendingUp, Shield, ChevronRight, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { AlertCircle, Target, TrendingUp, Shield, ChevronRight, Loader2, Router } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface DashboardStats {
   totalFlights: number;

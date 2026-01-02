@@ -2,46 +2,48 @@ import { Suspense } from 'react';
 import BirthdaysClient from './BirthdaysClient';
 import BirthdaysSkeleton from './BirthdaysSkeleton';
 import type { BirthdayPerson } from './BirthdaysClient';
+import { redirect } from 'next/navigation';
 
 export const metadata = {
-  title: 'Дні народження | RUBAK',
+  title: 'Дні народження | KABUR18',
   description: 'Календар днів народження',
 };
 
 export const revalidate = 300; // Revalidate кожні 5 хвилин
 
 async function fetchBirthdays(): Promise<BirthdayPerson[]> {
-  try {
-    const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL;
+  redirect('/');
+  // try {
+  //   const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_BIRTHDAYS_URL;
     
-    if (!SCRIPT_URL) {
-      console.error('Google Script Birthdays URL not configured');
-      return [];
-    }
+  //   if (!SCRIPT_URL) {
+  //     console.error('Google Script Birthdays URL not configured');
+  //     return [];
+  //   }
 
-    const response = await fetch(SCRIPT_URL, {
-      cache: 'no-store',
-      next: { revalidate: 300 }
-    });
+  //   const response = await fetch(SCRIPT_URL, {
+  //     cache: 'no-store',
+  //     next: { revalidate: 300 }
+  //   });
 
-    if (!response.ok) {
-      console.error(`Fetch error: ${response.status}`);
-      return [];
-    }
+  //   if (!response.ok) {
+  //     console.error(`Fetch error: ${response.status}`);
+  //     return [];
+  //   }
 
-    const data = await response.json();
+  //   const data = await response.json();
     
-    if (!Array.isArray(data)) {
-      console.error('Invalid data format');
-      return [];
-    }
+  //   if (!Array.isArray(data)) {
+  //     console.error('Invalid data format');
+  //     return [];
+  //   }
 
-    return data;
+  //   return data;
 
-  } catch (error) {
-    console.error('fetchBirthdays error:', error);
-    return [];
-  }
+  // } catch (error) {
+  //   console.error('fetchBirthdays error:', error);
+  //   return [];
+  // }
 }
 
 async function BirthdaysContent() {

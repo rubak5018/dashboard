@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RUBAK5018",
+  title: "KABUR18",
   description: "TACTICAL AIRFORCE",
 };
 

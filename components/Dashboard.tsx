@@ -412,7 +412,7 @@ export default function Dashboard() {
               </Card>
             )}
 
-            {stats.hasSettlements && (
+            {/* {stats.hasSettlements && (
               <Card className={`border-muted transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -436,12 +436,12 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-            )}
+            )} */}
           </div>
         )}
 
         {/* Ammo and Drone Types */}
-        {(stats.ammoStats.length > 0 || stats.droneTypeStats.length > 0) && (
+        {/* {(stats.ammoStats.length > 0 || stats.droneTypeStats.length > 0) && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {stats.ammoStats.length > 0 && (
               <Card className={`border-muted transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -498,7 +498,7 @@ export default function Dashboard() {
               </Card>
             )}
           </div>
-        )}
+        )} */}
 
         {/* Recent flights */}
         {stats.recentFlights.length > 0 && (

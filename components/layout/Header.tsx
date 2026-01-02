@@ -35,17 +35,13 @@ const navMenu: MenuItem[] = [
       {
         title: "+ Новий звіт FPV",
         href: "/reports/new"
-      },
-      {
-        title: "+ Новий звіт розвідки",
-        href: "/reports/new"
-      },
+      }
     ]
   },
-  {
-    title: "Наші котики",
-    href: "/birthdays"
-  }
+  // {
+  //   title: "Наші котики",
+  //   href: "/birthdays"
+  // }
 ]
 
 export default function Header({ showStats = true, isLoading = false }: HeaderProps) {
@@ -77,7 +73,7 @@ export default function Header({ showStats = true, isLoading = false }: HeaderPr
             </div>
             <div className="block">
               <h1 className="text-xl md:text-2xl font-black tracking-tight bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
-                RUBAK
+                KABUR18
               </h1>
               <p className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-wider">
                 Tactical AirForce

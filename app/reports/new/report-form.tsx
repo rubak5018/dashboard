@@ -69,6 +69,7 @@ const CREWS = [
 const PILOTS = [
   { value: "HUNTER", label: "HUNTER" },
   { value: "MARSHALL", label: "MARSHALL" },
+  { value: "FURA", label: "FURA" },
   { value: "TOURIST", label: "TOURIST" },
   { value: "PUNCH", label: "PUNCH" },
   { value: "СЬОГУН", label: "СЬОГУН" },
@@ -610,6 +611,7 @@ export default function DroneReportForm() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="ворожий РЕБ">ворожий РЕБ</SelectItem>
+                            <SelectItem value="обрив оптоволокна">Обрив оптоволокна</SelectItem>
                             <SelectItem value="збиття стрілецькою зброєю">Збили стрілецькою зброєю</SelectItem>
                           </SelectContent>
                         </Select>
@@ -696,7 +698,7 @@ export default function DroneReportForm() {
               {showPreview && (
                 <Card className="gap-1 bg-slate-50 h-fit">
                   <CardHeader className="py-0">
-                    <CardTitle className="text-lg">Прев`&apos;`ю звіту</CardTitle>
+                    <CardTitle className="text-lg">Прев&apos;ю звіту</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm">
                     <div>

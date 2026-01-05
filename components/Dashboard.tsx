@@ -246,7 +246,7 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold">{stats.totalFlights}</div>
-                <p className="text-xs text-muted-foreground mt-1">операцій виконано</p>
+                <p className="text-xs text-muted-foreground mt-1">вильотів здійснено</p>
               </CardContent>
             </Card>
 
@@ -262,7 +262,7 @@ export default function Dashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.successfulHits}</div>
-                  <p className="text-xs text-muted-foreground mt-1">цілей знищено</p>
+                  <p className="text-xs text-muted-foreground mt-1">цілей уражено</p>
                 </CardContent>
               </Card>
             )}
@@ -279,7 +279,7 @@ export default function Dashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold text-destructive">{stats.droneLosses}</div>
-                  <p className="text-xs text-muted-foreground mt-1">БпЛА використано</p>
+                  <p className="text-xs text-muted-foreground mt-1">БпЛА втрачено</p>
                 </CardContent>
               </Card>
             )}

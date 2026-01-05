@@ -83,11 +83,13 @@ const DRONE_TYPES = [
   { value: "БПЛА VIRIY JOHNNY PRO 10TK", label: "БПЛА VIRIY JOHNNY PRO 10TK" },
   { value: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)", label: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)" },
   { value: "BabaBoom 10 radio", label: "BabaBoom 10 radio" },
+  { value: "БпЛА Лупиніс-10-TFL-1", label: "БпЛА Лупиніс-10-TFL-1" },
+  { value: "БпЛА Лупиніс-10-TFL-1-Т", label: "БпЛА Лупиніс-10-TFL-1-Т" },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ' },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ' },
   { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
   { value: "Безпілотний літальний апарат \"DARTS\"", label: "Безпілотний літальний апарат \"DARTS\"" },
-  { value: "Баражуючий дрон \"Батон\"", label: "Баражуючий дрон \"Батон\"" }
+  { value: "Баражуючий дрон \"Батон\"", label: "Баражуючий дрон \"Батон\"" },
 ];
 
 const STREAMS = [

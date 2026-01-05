@@ -30,6 +30,10 @@ const navMenu: MenuItem[] = [
     href: "/dashboard"
   },
   {
+    title: "Погода",
+    href: "/weather"
+  },
+  {
     title: "Звіти",
     submenu: [
       {

@@ -510,7 +510,7 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+              <div className="flex flex-col-reverse gap-y-5">
                 {stats.recentFlights.map((flight, index) => (
                   <div key={index} className="group flex items-start gap-4 p-4 rounded-lg border border-border bg-muted/30 hover:bg-muted/50 hover:border-primary/30 transition-all duration-300">
                     <div className="flex-1 space-y-2">

@@ -626,9 +626,6 @@ const DroneWeatherWidget: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Comparison Table */}
-                {renderComparison()}
-
                 {/* Drone Type Selection */}
                 <div className={`transition-all duration-700 delay-150 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <label className="block text-sm font-semibold mb-3">Тип БПЛА:</label>
@@ -648,43 +645,8 @@ const DroneWeatherWidget: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Drone Characteristics */}
-                <div className={`bg-primary/5 border border-primary/20 rounded-lg p-6 transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    <h4 className="font-semibold mb-4 flex items-center gap-2">
-                        <Plane className="w-5 h-5 text-primary" />
-                        Характеристики: {droneTypes[selectedDrone].name}
-                    </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Макс. вітер</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxWind} м/с</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Макс. опади</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxRain} мм</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Дальність</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].range}</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Висота</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].altitude}</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Мін. темп</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].minTemp}°C</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Макс. темп</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxTemp}°C</div>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-muted-foreground">Мін. видимість</div>
-                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].minVisibility} м</div>
-                        </div>
-                    </div>
-                </div>
+                {/* Comparison Table */}
+                {renderComparison()}
 
                 {/* View Mode Selector */}
                 <div className={`flex gap-2 bg-card p-2 rounded-lg inline-flex border transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -826,6 +788,44 @@ const DroneWeatherWidget: React.FC = () => {
                 {/* Hourly and Daily Views */}
                 {viewMode === 'hourly' && renderHourlyForecast()}
                 {viewMode === 'daily' && renderDailyForecast()}
+
+                {/* Drone Characteristics */}
+                <div className={`bg-primary/5 border border-primary/20 rounded-lg p-6 transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                    <h4 className="font-semibold mb-4 flex items-center gap-2">
+                        <Plane className="w-5 h-5 text-primary" />
+                        Характеристики: {droneTypes[selectedDrone].name}
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Макс. вітер</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxWind} м/с</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Макс. опади</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxRain} мм</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Дальність</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].range}</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Висота</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].altitude}</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Мін. темп</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].minTemp}°C</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Макс. темп</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].maxTemp}°C</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-muted-foreground">Мін. видимість</div>
+                            <div className="font-semibold text-sm">{droneTypes[selectedDrone].minVisibility} м</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

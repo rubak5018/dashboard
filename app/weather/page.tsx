@@ -693,7 +693,7 @@ const DroneWeatherWidget: React.FC = () => {
                                     <XCircle className="w-10 h-10 text-red-600 dark:text-red-400" />
                                 )}
                                 <div>
-                                    <h2 className="text-2xl font-bold">
+                                    <h2 className={`text-2xl font-bold ${analysis?.canFly ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                                         {analysis?.canFly ? 'ДОЗВОЛЕНО ВИЛІТ' : 'ВИЛІТ НЕ РЕКОМЕНДУЄТЬСЯ'}
                                     </h2>
                                     <p className={`text-sm ${analysis?.canFly ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>

@@ -89,6 +89,7 @@ const DRONE_TYPES = [
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ' },
   { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
   { value: "Безпілотний літальний апарат \"DARTS\"", label: "Безпілотний літальний апарат \"DARTS\"" },
+  { value: "БпЛА \"VYRIY PRO 15\"", label: "Безпілотний літальний апарат \"Блискавка\"" },
   { value: "Баражуючий дрон \"Батон\"", label: "Баражуючий дрон \"Батон\"" },
 ];
 

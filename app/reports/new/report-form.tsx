@@ -52,7 +52,7 @@ interface ToastData {
 }
 
 const MISSION_TYPES = [
-  { value: "Виліт з метою розвідки боєм", label: "Виліт з метою розвідки боєм" },
+  { value: "Виліт з метою ударно-пошукових дій", label: "Виліт з метою ударно-пошукових дій" },
   { value: "Виліт з метою тестування обладнання", label: "Виліт з метою тестування обладнання" },
   { value: "Виліт з метою ураження укриття противника", label: "Виліт з метою ураження укриття противника" },
   { value: "Виліт з метою ураження о/с противника", label: "Виліт з метою ураження о/с противника" },
@@ -83,17 +83,16 @@ const PILOTS = [
 const DRONE_TYPES = [
   { value: "Безпілотний літальний апарат \"VYRIY PRO\"", label: "Безпілотний літальний апарат \"VYRIY PRO\"" },
   { value: "БПЛА VIRIY JOHNNY PRO 10TK", label: "БПЛА VIRIY JOHNNY PRO 10TK" },
-  { value: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)", label: "БпЛА  \"Vyriy OPTO 15/25 км\" з АКБ (40500)" },
   { value: "Безпілотний літальний апарат \"Vyriy Opto 15\"", label: "Безпілотний літальний апарат \"Vyriy Opto 15\"" },
   { value: "BabaBoom 10 radio", label: "BabaBoom 10 radio" },
-  { value: "БпЛА Лупиніс-10-TFL-1", label: "БпЛА Лупиніс-10-TFL-1" },
-  { value: "БпЛА Лупиніс-10-TFL-1-Т", label: "БпЛА Лупиніс-10-TFL-1-Т" },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ' },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ' },
   { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
+  { value: "БпЛА Лупиніс-10-TFL-1", label: "БпЛА Лупиніс-10-TFL-1" },
+  { value: "БпЛА Лупиніс-10-TFL-1-Т", label: "БпЛА Лупиніс-10-TFL-1-Т" },
   { value: "Безпілотний літальний апарат \"DARTS\"", label: "Безпілотний літальний апарат \"DARTS\"" },
-  { value: "БпЛА \"VYRIY PRO 15\"", label: "Безпілотний літальний апарат \"Блискавка\"" },
   { value: "Баражуючий дрон \"Батон\"", label: "Баражуючий дрон \"Батон\"" },
+  { value: "БпЛА \"VYRIY PRO 15\"", label: "Безпілотний літальний апарат \"Блискавка\"" },
 ];
 
 const STREAMS = [

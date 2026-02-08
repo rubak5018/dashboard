@@ -69,15 +69,11 @@ const CREWS = [
 ];
 
 const PILOTS = [
-  { value: "HUNTER", label: "HUNTER" },
   { value: "MARSHALL", label: "MARSHALL" },
   { value: "ПЕРСОНАЖ", label: "ПЕРСОНАЖ" },
   { value: "FURA", label: "FURA" },
   { value: "TOURIST", label: "TOURIST" },
-  { value: "PUNCH", label: "PUNCH" },
   { value: "СЬОГУН", label: "СЬОГУН" },
-  { value: "SAMURAI", label: "SAMURAI" },
-  { value: "KIRA", label: "KIRA" },
   { value: "KOMA", label: "KOMA" }
 ];
 

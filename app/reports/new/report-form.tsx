@@ -392,7 +392,7 @@ export default function DroneReportForm() {
         droneType: formData.droneType,
         serialNumber: formData.serialNumber || '',
         stream: formData.stream,
-        shortDescription: formData.generalResult === 'hit' ? formData.shortDescription : 'Ціль не уражено. Втрата борта, через ' + formData.lossReason,
+        shortDescription: formData.generalResult === 'hit' ? formData.shortDescription : formData.lossReason,
         targetDestroyed: formData.generalResult === 'hit' ? formData.targetDestroyed : 'ціль не уражено',
         isDroneLoss: formData.generalResult === 'hit' ? 'Ні' : 'Так',
         lossReason: formData.generalResult === 'loss' ? formData.lossReason : '-',

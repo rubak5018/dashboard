@@ -95,13 +95,10 @@ const DRONE_TYPES = [
 ];
 
 const STREAMS = [
+  { value: "Власний (SOIKA)", label: "Власний (SOIKA)" },
+  { value: "Власний (BIDOLAGY)", label: "Власний (BIDOLAGY)" },
   { value: "6.3 ALFA", label: "6.3 ALFA" },
   { value: "6.3 BRAVO", label: "6.3 BRAVO" },
-  { value: "6.3 DELTA", label: "6.3 DELTA" },
-  { value: "6.3 РОНІН", label: "6.3 РОНІН" },
-  { value: "Власний (запис екрану)", label: "Власний (запис екрану)" },
-  { value: "ПОКИДЬКИ", label: "ПОКИДЬКИ" },
-  { value: "WOLF'S", label: "WOLF'S" }
 ];
 
 const SETTLEMENTS = [
@@ -579,7 +576,7 @@ export default function DroneReportForm() {
                         value={formData.targetCoordinates}
                         onChange={(e) => handleChange('targetCoordinates', e.target.value)}
                         onBlur={() => handleBlur('targetCoordinates')}
-                        placeholder="37U CP 1234567890"
+                        placeholder="37U CP 12345 67890"
                         className="font-mono"
                       />
                     </FormField>

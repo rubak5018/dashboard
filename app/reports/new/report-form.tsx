@@ -65,7 +65,6 @@ const CREWS = [
   { value: "СОЙКА", label: "СОЙКА" },
   { value: "БІДОЛАГИ", label: "БІДОЛАГИ" },
   { value: "МОЛОХ", label: "МОЛОХ" },
-  { value: "РОДИЧІ", label: "РОДИЧІ" }
 ];
 
 const PILOTS = [
@@ -78,6 +77,7 @@ const PILOTS = [
 ];
 
 const DRONE_TYPES = [
+  { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
   { value: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20Т\" за специфікацією 791100.029', label: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20Т\" за специфікацією 791100.029' },
   { value: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20А\" за специфікацією 791100.028', label: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20А\" за специфікацією 791100.028' },
   { value: "Безпілотний літальний апарат \"Vyriy Opto 15/30 ДК ОВ 30КМ\"", label: "Безпілотний літальний апарат \"Vyriy Opto 15/30 ДК ОВ 30КМ\"" },
@@ -86,7 +86,6 @@ const DRONE_TYPES = [
   { value: "BabaBoom 10 radio", label: "BabaBoom 10 radio" },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ20КМ' },
   { value: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ', label: 'БПЛА BABABOOM 16 OPTIC ДК ОВ25КМ' },
-  { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
   { value: "БпЛА Лупиніс-10-TFL-1", label: "БпЛА Лупиніс-10-TFL-1" },
   { value: "БпЛА Лупиніс-10-TFL-1-Т", label: "БпЛА Лупиніс-10-TFL-1-Т" },
   { value: "Безпілотний літальний апарат \"DARTS\"", label: "Безпілотний літальний апарат \"DARTS\"" },
@@ -97,19 +96,12 @@ const DRONE_TYPES = [
 const STREAMS = [
   { value: "Власний (SOIKA)", label: "Власний (SOIKA)" },
   { value: "Власний (BIDOLAGY)", label: "Власний (BIDOLAGY)" },
-  { value: "6.3 ALFA", label: "6.3 ALFA" },
-  { value: "6.3 BRAVO", label: "6.3 BRAVO" },
 ];
 
 const SETTLEMENTS = [
-  { value: "Сергіївка", label: "Сергіївка" },
-  { value: "Удачне", label: "Удачне" },
-  { value: "Новотроїцьке", label: "Новотроїцьке" },
-  { value: "Жовте", label: "Жовте" },
-  { value: "Котлине", label: "Котлине" },
-  { value: "Покровськ", label: "Покровськ" },
-  { value: "Мирноград", label: "Мирноград" },
-  { value: "Шевченко", label: "Шевченко" }
+  { value: "Білий колодязь", label: "Білий колодязь" },
+  { value: "Вознесеновка", label: "Вознесеновка" },
+  { value: "Шебекино", label: "Шебекино" },
 ];
 
 const TARGET_TYPES = [

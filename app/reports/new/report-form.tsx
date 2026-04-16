@@ -22,6 +22,7 @@ interface FormData {
   stream: string;
   generalResult: string;
   shortDescription: string;
+  missComment: string;
   targetDestroyed: string;
   lossReason: string;
   targetSettlement: string;
@@ -241,6 +242,7 @@ export default function DroneReportForm() {
     stream: '',
     generalResult: '',
     shortDescription: '',
+    missComment: '',
     targetDestroyed: '',
     lossReason: 'ворожий РЕБ',
     targetSettlement: '',
@@ -277,6 +279,10 @@ export default function DroneReportForm() {
         return formData.generalResult === 'hit' && !value ? "Обов'язкове поле" : '';
       case 'lossReason':
         return formData.generalResult === 'loss' && !value ? 'Оберіть причину' : '';
+      case 'missComment':
+        return formData.generalResult === 'miss' && value.length < 5
+          ? 'Мін. 5 символів'
+          : '';
       case 'targetSettlement':
       case 'eventSettlement':
         return value ? '' : 'Оберіть населений пункт';
@@ -335,6 +341,9 @@ export default function DroneReportForm() {
     } else if (formData.generalResult === 'loss') {
       const error = validateField('lossReason', formData.lossReason);
       if (error) newErrors.lossReason = error;
+    } else if (formData.generalResult === 'miss') {
+      const error = validateField('missComment', formData.missComment);
+      if (error) newErrors.missComment = error;
     }
 
     return newErrors;
@@ -385,8 +394,16 @@ export default function DroneReportForm() {
         droneType: formData.droneType,
         serialNumber: formData.serialNumber || '',
         stream: formData.stream,
-        shortDescription: formData.generalResult === 'hit' ? formData.shortDescription : formData.lossReason,
-        targetDestroyed: formData.generalResult === 'hit' ? formData.targetDestroyed : 'ціль не уражено',
+        shortDescription:
+        formData.generalResult === 'hit'
+          ? formData.shortDescription
+          : formData.generalResult === 'miss'
+          ? 'невлучання - ' + formData.missComment
+          : formData.lossReason,
+        targetDestroyed:
+          formData.generalResult === 'hit'
+            ? formData.targetDestroyed
+            : 'ціль не уражено',
         isDroneLoss: formData.generalResult === 'hit' ? 'Ні' : 'Так',
         lossReason: formData.generalResult === 'loss' ? formData.lossReason : '-',
         targetSettlement: formData.targetSettlement,
@@ -412,12 +429,12 @@ export default function DroneReportForm() {
       showToast('success', 'Звіт успішно відправлено!');
 
       // Очищення форми
-      setFormData({
-        strikeTime: '', flightType: '', crew: '', pilot: '',
-        droneType: '', stream: '', serialNumber: '', generalResult: '', shortDescription: '',
-        targetDestroyed: '', lossReason: '', targetSettlement: '', targetCoordinates: '',
-        eventSettlement: '', eventCoordinates: '', ammoType: '', initiationType: '', ammoCount: '1'
-      });
+      // setFormData({
+      //   strikeTime: '', flightType: '', crew: '', pilot: '',
+      //   droneType: '', stream: '', serialNumber: '', generalResult: '', shortDescription: '', missComment: '',
+      //   targetDestroyed: '', lossReason: '', targetSettlement: '', targetCoordinates: '',
+      //   eventSettlement: '', eventCoordinates: '', ammoType: '', initiationType: '', ammoCount: '1'
+      // });
       setTouched({});
       setErrors({});
     } catch (error) {
@@ -610,6 +627,7 @@ export default function DroneReportForm() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="hit">Ураження</SelectItem>
+                          <SelectItem value="miss">Невлучання</SelectItem>
                           <SelectItem value="loss">Втрата борта</SelectItem>
                         </SelectContent>
                       </Select>
@@ -638,6 +656,18 @@ export default function DroneReportForm() {
                           />
                         </FormField>
                       </>
+                    )}
+
+                    {formData.generalResult === 'miss' && (
+                      <FormField label="Коментар" error={touched.missComment ? errors.missComment : undefined}>
+                        <Textarea
+                          value={formData.missComment}
+                          onChange={(e) => handleChange('missComment', e.target.value)}
+                          onBlur={() => handleBlur('missComment')}
+                          placeholder="Опишіть ситуацію детальніше..."
+                          rows={3}
+                        />
+                      </FormField>
                     )}
 
                     {formData.generalResult === 'loss' && (
@@ -763,16 +793,18 @@ export default function DroneReportForm() {
                     <div className="border-t pt-3">
                       <p className="font-semibold text-slate-600 mb-1">Результат</p>
                       <div className="space-y-0.5 text-slate-700">
-                        <p>{formData.generalResult === 'hit' ? 'Ураження' : formData.generalResult === 'loss' ? 'Ціль не уражено. Втрата борта, через ' + formData.lossReason : '—'}</p>
-                        {formData.generalResult === 'hit' && (
-                          <>
-                            <p><strong>Опис:</strong> {formData.shortDescription || '—'}</p>
-                            <p><strong>Уражено:</strong> {formData.targetDestroyed || '—'}</p>
-                          </>
+                        <p>
+                          {formData.generalResult === 'hit'
+                            ? 'Ураження'
+                            : formData.generalResult === 'miss'
+                              ? 'Невлучання'
+                              : formData.generalResult === 'loss'
+                                ? 'Ціль не уражено. Втрата борта, через ' + formData.lossReason
+                                : '—'}
+                        </p>
+                        {formData.generalResult === 'miss' && formData.missComment && (
+                          <p><strong>Коментар:</strong> {formData.missComment}</p>
                         )}
-                        {/* {formData.generalResult === 'loss' && (
-                          <p><strong>Причина:</strong> {formData.lossReason || '—'}</p>
-                        )} */}
                       </div>
                     </div>
 

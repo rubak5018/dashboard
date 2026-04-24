@@ -686,6 +686,8 @@ export default function DroneReportForm() {
                             <SelectItem value="ворожий РЕБ">ворожий РЕБ</SelectItem>
                             <SelectItem value="обрив оптоволокна">Обрив оптоволокна</SelectItem>
                             <SelectItem value="збиття стрілецькою зброєю">Збили стрілецькою зброєю</SelectItem>
+                            <SelectItem value="розрядження АКБ">Розрядження АКБ</SelectItem>
+                            <SelectItem value="технічні проблеми">Технічні проблеми</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormField>

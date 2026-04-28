@@ -64,7 +64,7 @@ const MISSION_TYPES = [
 
 const CREWS = [
   { value: "СОЙКА", label: "СОЙКА" },
-  { value: "БІДОЛАГИ", label: "БІДОЛАГИ" },
+  { value: "ХЛОПАКИ", label: "ХЛОПАКИ" },
   { value: "МОЛОХ", label: "МОЛОХ" },
 ];
 

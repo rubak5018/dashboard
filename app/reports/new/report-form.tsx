@@ -105,7 +105,16 @@ const STREAMS = [
 const SETTLEMENTS = [
   { value: "Білий колодязь", label: "Білий колодязь" },
   { value: "Вознесеновка", label: "Вознесеновка" },
-  { value: "Шебекино", label: "Шебекино" },
+  { value: "Красное", label: "Красное" },
+  { value: "Ленинский", label: "Ленинский" },
+  { value: "Охрімівка", label: "Охрімівка" },
+  { value: "Панков", label: "Панков" },
+  { value: "Мухин", label: "Мухин" },
+  { value: "Зибине", label: "Зибине" },
+  { value: "Бочкове", label: "Бочкове" },
+  { value: "Чайківка", label: "Чайківка" },
+  { value: "Караічне", label: "Караічне" },
+  { value: "Волохівка", label: "Волохівка" },
 ];
 
 const TARGET_TYPES = [

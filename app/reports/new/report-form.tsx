@@ -81,6 +81,7 @@ const DRONE_TYPES = [
   { value: "БпЛА Комар У 15 Optic", label: "БпЛА Комар У 15 Optic" },
   { value: "БпЛА Vyriy Opto 10/20 з денною камерою", label: "БпЛА Vyriy Opto 10/20 (опторіз від Стерненка)" },
   { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
+  { value: "БПЛА  SHRIKE 10Т", label: "БПЛА  SHRIKE 10Т" },
   { value: "БпЛА Лупиніс-10-TFL-1-Т", label: "БПЛА BLINK 10" },
   { value: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20Т\" за специфікацією 791100.029', label: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20Т\" за специфікацією 791100.029' },
   { value: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20А\" за специфікацією 791100.028', label: 'Безпілотний літальний апарат \"ГРОМИЛО ОПТИК 20А\" за специфікацією 791100.028' },
@@ -554,7 +555,7 @@ export default function DroneReportForm() {
                         />
                       </FormField>
 
-                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS'))) &&
+                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS') || formData.droneType.includes('SHRIKE'))) &&
                         <FormField label="Заводський номер" error={touched.serialNumber ? errors.serialNumber : undefined}>
                           <Input
                             type="text"

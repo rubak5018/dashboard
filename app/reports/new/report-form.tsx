@@ -188,6 +188,8 @@ const AMMOS_LIST = [
   { value: "СВП Фугас ( Ф-0.7 ) (TNT 1фут 1.5 шт. + ПВР С4/575 150г + ЕД-8Ж)", label: "СВП Фугас ( Ф-0.7 )" },
   { value: "СВП Фугас двигун ПГ( ФПГ - 1.0 ) (ПВР sprangdeg m/46 - 1.5 шт. + ЕД-8Ж)", label: "СВП Фугас двигун ПГ( ФПГ - 1.0 )" },
   { value: "СВП Фугас 3.0", label: "СВП Фугас 3.0" },
+  { value: "ПВР Fordin-P 950г", label: "ПВР Fordin-P 950г" },
+  { value: "ПВР Fordin-P 1900г", label: "ПВР Fordin-P 1900г" },
 ];
 
 const INITIATION_TYPES = [

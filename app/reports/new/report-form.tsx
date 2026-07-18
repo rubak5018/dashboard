@@ -559,7 +559,7 @@ export default function DroneReportForm() {
                         />
                       </FormField>
 
-                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS') || formData.droneType.includes('SHRIKE') || formData.droneType.includes('БУЛАВА') || formData.droneType.includes('БАТОН'))) &&
+                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS') || formData.droneType.includes('SHRIKE') || formData.droneType.includes('БУЛАВА') || formData.droneType.includes('Baton'))) &&
                         <FormField label="Заводський номер" error={touched.serialNumber ? errors.serialNumber : undefined}>
                           <Input
                             type="text"

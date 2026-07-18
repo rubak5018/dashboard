@@ -78,6 +78,7 @@ const PILOTS = [
 ];
 
 const DRONE_TYPES = [
+  { value: "Безпілотний літальний апарат «БУЛАВА»", label: "Безпілотний літальний апарат «БУЛАВА»" },
   { value: "БпЛА Комар У 15 Optic", label: "БпЛА Комар У 15 Optic" },
   { value: "БпЛА Vyriy Opto 10/20 з денною камерою", label: "БпЛА Vyriy Opto 10/20 (опторіз від Стерненка)" },
   { value: "БПЛА BLINK 8", label: "БПЛА BLINK 8" },
@@ -558,7 +559,7 @@ export default function DroneReportForm() {
                         />
                       </FormField>
 
-                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS') || formData.droneType.includes('SHRIKE'))) &&
+                      {((formData.droneType.includes('BLINK') || formData.droneType.includes('BABABOOM 16 OPTIC') || formData.droneType.includes('DARTS') || formData.droneType.includes('SHRIKE') || formData.droneType.includes('БУЛАВА') || formData.droneType.includes('БАТОН'))) &&
                         <FormField label="Заводський номер" error={touched.serialNumber ? errors.serialNumber : undefined}>
                           <Input
                             type="text"

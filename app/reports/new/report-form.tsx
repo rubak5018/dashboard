@@ -63,19 +63,20 @@ const MISSION_TYPES = [
 ];
 
 const CREWS = [
+  { value: "ДІДЬКО", label: "ДІДЬКО" },
   { value: "СОЙКА", label: "СОЙКА" },
   { value: "ХЛОПАКИ", label: "ХЛОПАКИ" },
   { value: "МОЛОХ", label: "МОЛОХ" },
 ];
 
 const PILOTS = [
+  { value: "HUNTER", label: "HUNTER" },
   { value: "MARSHALL", label: "MARSHALL" },
   { value: "ПЕРСОНАЖ", label: "ПЕРСОНАЖ" },
   { value: "FURA", label: "FURA" },
   { value: "TOURIST", label: "TOURIST" },
   { value: "СЬОГУН", label: "СЬОГУН" },
-  { value: "KOMA", label: "KOMA" },
-  { value: "HUNTER", label: "HUNTER" }
+  { value: "KOMA", label: "KOMA" }
 ];
 
 const DRONE_TYPES = [

@@ -74,10 +74,12 @@ const PILOTS = [
   { value: "FURA", label: "FURA" },
   { value: "TOURIST", label: "TOURIST" },
   { value: "СЬОГУН", label: "СЬОГУН" },
-  { value: "KOMA", label: "KOMA" }
+  { value: "KOMA", label: "KOMA" },
+  { value: "HUNTER", label: "HUNTER" }
 ];
 
 const DRONE_TYPES = [
+  { value: "Безпілотний літальний апарат \"Блискавка\"", label: "Безпілотний літальний апарат \"Блискавка\"" },
   { value: "Безпілотний літальний апарат «БУЛАВА»", label: "Безпілотний літальний апарат «БУЛАВА»" },
   { value: "БпЛА Комар У 15 Optic", label: "БпЛА Комар У 15 Optic" },
   { value: "БпЛА Vyriy Opto 10/20 з денною камерою", label: "БпЛА Vyriy Opto 10/20 (опторіз від Стерненка)" },
